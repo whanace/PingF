@@ -22,6 +22,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -227,19 +228,7 @@ public class SampleMain extends ActionBarActivity {
                 case DragEvent.ACTION_DROP: {
                     ClipData dragData = event.getClipData();
                     final String tag = dragData.getItemAt(0).getText().toString();
-                    switch(tag) {
-                        case "a":
 
-                            break;
-                        case "b":
-                            break;
-                        case "c":
-                            break;
-                        case "d":
-                            break;
-                        case "e":
-                            break;
-                    }
 
                     if (v == findViewById(R.id.layout11)) {
                         Toast.makeText(getApplicationContext(), "targetLayout: " + v.getTag() +
@@ -391,6 +380,25 @@ public class SampleMain extends ActionBarActivity {
         String msg = splitData[1];
 
         println("[" + fromId + "]로부터 수신한 데이터 : " + msg);
+        ImageView l1 = (ImageView)findViewById(R.id.user1);
+        ImageView l2 = (ImageView)findViewById(R.id.user2);
+        switch(msg) {
+            case "a":
+                l1.setImageResource(R.drawable.icon_i);
+                break;
+            case "b":
+                l1.setImageResource(R.drawable.icon_n);
+                break;
+            case "c":
+                l1.setImageResource(R.drawable.icon_q);
+                break;
+            case "d":
+                l1.setImageResource(R.drawable.icon_s);
+                break;
+            case "e":
+                l1.setImageResource(R.drawable.icon_tmp);
+                break;
+        }
     }
 
     @Override
