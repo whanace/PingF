@@ -23,6 +23,9 @@ public class SampleMain extends ActionBarActivity {
     int deviceHeight;
     int deviceWidth;
     int requestCode = 10;
+    private LinearLayout layout11;
+    private LinearLayout layout12;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +49,11 @@ public class SampleMain extends ActionBarActivity {
         layout_friendslistpage1_2.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, deviceHeight / 6 + 30));
         layout_friendslistpage1_3.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, deviceHeight / 6 + 30));
         System.out.println("deviceWidth---------" + deviceWidth);
+        layout11 = (LinearLayout)findViewById(R.id.layout11);
+        layout12 = (LinearLayout)findViewById(R.id.layout12);
+
+        layout11.setOnDragListener(new mDragListener());
+        layout12.setOnDragListener(new mDragListener());
 
         Button icon1 = (Button) findViewById(R.id.icon20);
         Button icon2 = (Button) findViewById(R.id.icon21);
@@ -59,8 +67,7 @@ public class SampleMain extends ActionBarActivity {
         Button btn = (Button) findViewById(R.id.UserPlus);
         btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                setintent = new Intent(getApplication(), AddFriend.class);
-                startActivityForResult(setintent, requestCode);
+                Toast.makeText(getApplicationContext(), "aa", Toast.LENGTH_SHORT).show();
 
         /*      LinearLayout rel = (LinearLayout) View.inflate(
                         SampleMain.this, R.layout.layout, null);
@@ -153,7 +160,7 @@ public class SampleMain extends ActionBarActivity {
                     if (v == findViewById(R.id.layout11))
                         Toast.makeText(getApplicationContext(), "targetLayout: " + v.getTag() +
                                 " dragged :" + tag, Toast.LENGTH_SHORT).show();
-                    else if (v == findViewById(R.id.layout22))
+                    else if (v == findViewById(R.id.layout12))
                         Toast.makeText(getApplicationContext(), "targetLayout: " + v.getTag() +
                                 " dragged :" + tag, Toast.LENGTH_SHORT).show();
                     return true;
