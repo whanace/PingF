@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/container"
-    tools:context="com.exitpoint.kkakkung.sample2"
+    tools:context="xyz.pingtest.pingf"
     android:background="#ffeefafb">
 
 
@@ -147,27 +147,27 @@
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:id="@+id/icon20"
-                android:background="@drawable/icon_tmp" />
+                android:background="@drawable/icon_i" />
             <Button
                 android:layout_margin="5dp"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:id="@+id/icon21"
-                android:background="@drawable/icon_tmp" />
+                android:background="@drawable/icon_n" />
 
             <Button
                 android:layout_margin="5dp"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:id="@+id/icon22"
-                android:background="@drawable/icon_tmp"/>
+                android:background="@drawable/icon_q"/>
 
             <Button
                 android:layout_margin="5dp"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:id="@+id/icon23"
-                android:background="@drawable/icon_tmp" />
+                android:background="@drawable/icon_s" />
 
             <Button
                 android:layout_margin="5dp"
