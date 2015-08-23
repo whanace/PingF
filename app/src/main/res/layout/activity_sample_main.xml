@@ -215,12 +215,14 @@
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:id="@+id/icon20"
+                android:alpha="1"
                 android:background="@drawable/icon_i" />
             <Button
                 android:layout_margin="5dp"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:id="@+id/icon21"
+                android:alpha="2"
                 android:background="@drawable/icon_n" />
 
             <Button
@@ -228,6 +230,7 @@
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:id="@+id/icon22"
+                android:alpha="3"
                 android:background="@drawable/icon_q"/>
 
             <Button
@@ -235,6 +238,7 @@
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:id="@+id/icon23"
+                android:alpha="4"
                 android:background="@drawable/icon_s" />
 
             <Button
@@ -242,6 +246,7 @@
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:id="@+id/icon24"
+                android:alpha="5"
                 android:background="@drawable/icon_tmp" />
 
             <Button
