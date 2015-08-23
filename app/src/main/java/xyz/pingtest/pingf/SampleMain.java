@@ -227,18 +227,21 @@ public class SampleMain extends ActionBarActivity {
                 case DragEvent.ACTION_DROP: {
                     ClipData dragData = event.getClipData();
                     final String tag = dragData.getItemAt(0).getText().toString();
-<<<<<<< HEAD
-                    /*switch(tag) {
-                        case a:
+                    switch(tag) {
+                        case "a":
+
                             break;
-                        case b:
+                        case "b":
                             break;
-                    }*/
-                    if (v == findViewById(R.id.layout11))
-=======
+                        case "c":
+                            break;
+                        case "d":
+                            break;
+                        case "e":
+                            break;
+                    }
 
                     if (v == findViewById(R.id.layout11)) {
->>>>>>> 37254cdc9f3e5f2b125930d4c4b67d2c51d058b7
                         Toast.makeText(getApplicationContext(), "targetLayout: " + v.getTag() +
                                 " dragged :" + tag, Toast.LENGTH_SHORT).show();
                         sendMessage(tag);
