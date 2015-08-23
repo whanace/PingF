@@ -42,7 +42,10 @@ public class SampleMain extends ActionBarActivity {
     public static final String TAG = "GCMActivity";
     //서버주소
     final static String REG_URL = "http://www.pingserver.xyz/setgcm";
-    final static String SENDM_URL = "http://192.168.10.61:8080/MyServer1/SendMessage.jsp";
+    final static String SENDM_URL = "http://www.pingserver.xyz/send";
+    //개인 아이디
+    final static String MY_ID = "g3";
+    final static String MY_PW = "1111";
 
     GoogleCloudMessaging gcm;
     Handler handler = new Handler();
@@ -207,9 +210,11 @@ public class SampleMain extends ActionBarActivity {
                     ClipData dragData = event.getClipData();
                     final String tag = dragData.getItemAt(0).getText().toString();
 
-                    if (v == findViewById(R.id.layout11))
+                    if (v == findViewById(R.id.layout11)) {
                         Toast.makeText(getApplicationContext(), "targetLayout: " + v.getTag() +
                                 " dragged :" + tag, Toast.LENGTH_SHORT).show();
+                        sendMessage(tag);
+                    }
                     else if (v == findViewById(R.id.layout12))
                         Toast.makeText(getApplicationContext(), "targetLayout: " + v.getTag() +
                                 " dragged :" + tag, Toast.LENGTH_SHORT).show();
@@ -306,10 +311,8 @@ public class SampleMain extends ActionBarActivity {
     //자체 서버로 전송(Http get방식)
     private void sendRegistrationIdToBackend(){
         try {
-            String id = "g3";
-            String pwd = "1111";
-            String parameter = "?" + URLEncoder.encode("user_id", "UTF-8") + "=" + URLEncoder.encode(id, "UTF-8") + "&"
-                    + URLEncoder.encode("user_pw", "UTF-8") + "=" + URLEncoder.encode(pwd, "UTF-8") + "&"
+            String parameter = "?" + URLEncoder.encode("user_id", "UTF-8") + "=" + URLEncoder.encode(MY_ID, "UTF-8") + "&"
+                    + URLEncoder.encode("user_pw", "UTF-8") + "=" + URLEncoder.encode(MY_PW, "UTF-8") + "&"
                     + URLEncoder.encode("user_gcm", "UTF-8") + "=" + URLEncoder.encode(mGcmid, "UTF-8");
 
             URL url = new URL(REG_URL + parameter);
@@ -362,6 +365,48 @@ public class SampleMain extends ActionBarActivity {
 
         processIntent(intent);
         super.onNewIntent(intent);
+    }
+
+    //매시지 보내기
+    private void sendMessage(String msg){
+        new AsyncTask<String, Void, Void>(){
+
+            @Override
+            protected Void doInBackground(String... params) {
+
+                try{
+                    String m="";
+                    //어차피 한개 들어오지만.. ASYNC를 쓰기위해..
+                    for(String s : params)
+                        m = s;
+
+                    String to ="";
+
+                    String parameter = "?" + URLEncoder.encode("id_from","UTF-8") + "=" + URLEncoder.encode(MY_ID, "UTF-8") +
+                            "&" + URLEncoder.encode("id_to", "UTF-8") + "=" + URLEncoder.encode(to,"UTF-8") +
+                            "&" + URLEncoder.encode("msg", "UTF-8") + "=" + URLEncoder.encode(m,"UTF-8") +
+                            "&" + URLEncoder.encode("user_pw", "UTF-8") + "=" + URLEncoder.encode(MY_PW,"UTF-8");
+
+                    URL url = new URL(SENDM_URL + parameter);
+                    Log.i(TAG, "URL=" + url);
+
+                    HttpURLConnection con =(HttpURLConnection) url.openConnection();
+                    con.setConnectTimeout(3000);
+                    con.setReadTimeout(3000);
+
+                    con.connect();
+
+                    if(con.getResponseCode() == HttpURLConnection.HTTP_OK)
+                    {
+                        Log.i(TAG, "Send Message OK");
+                    }
+
+                } catch (Exception e){e.printStackTrace();}
+
+
+                return null;
+            }
+        }.execute(msg);
     }
 
     @Override
