@@ -44,7 +44,7 @@ public class SampleMain extends ActionBarActivity {
     final static String REG_URL = "http://www.pingserver.xyz/setgcm";
     final static String SENDM_URL = "http://www.pingserver.xyz/send";
     //개인 아이디
-    final static String MY_ID = "g3";
+    final static String MY_ID = "vu2";
     final static String MY_PW = "1111";
 
     GoogleCloudMessaging gcm;
@@ -354,9 +354,12 @@ public class SampleMain extends ActionBarActivity {
             Log.d(TAG, "from is null.");
             return;
         }
-        String data = intent.getStringExtra("msg");
+        String recvData = intent.getStringExtra("msg");
+        String[] splitData = recvData.split("/");
+        String fromId = splitData[0];
+        String msg = splitData[1];
 
-        println("[" + from + "]로부터 수신한 데이터 : " + data);
+        println("[" + fromId + "]로부터 수신한 데이터 : " + msg);
     }
 
     @Override
@@ -375,15 +378,14 @@ public class SampleMain extends ActionBarActivity {
             protected Void doInBackground(String... params) {
 
                 try{
-                    String m="";
+                    String m="";//받는사람
                     //어차피 한개 들어오지만.. ASYNC를 쓰기위해..
                     for(String s : params)
                         m = s;
 
-                    String to ="";
 
                     String parameter = "?" + URLEncoder.encode("id_from","UTF-8") + "=" + URLEncoder.encode(MY_ID, "UTF-8") +
-                            "&" + URLEncoder.encode("id_to", "UTF-8") + "=" + URLEncoder.encode(to,"UTF-8") +
+                            "&" + URLEncoder.encode("id_to", "UTF-8") + "=" + URLEncoder.encode("g3","UTF-8") +
                             "&" + URLEncoder.encode("msg", "UTF-8") + "=" + URLEncoder.encode(m,"UTF-8") +
                             "&" + URLEncoder.encode("user_pw", "UTF-8") + "=" + URLEncoder.encode(MY_PW,"UTF-8");
 
