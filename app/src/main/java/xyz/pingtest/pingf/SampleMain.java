@@ -156,8 +156,26 @@ public class SampleMain extends ActionBarActivity {
         public boolean onLongClick(View v) {
             View icon = findViewById(v.getId()); // 뷰의 이미지를 동적으로 가져오는 것.
             String name = v.toString();//View id data test
-            Toast.makeText(getApplicationContext(), " " + name, Toast.LENGTH_SHORT).show();
-            ClipData data = ClipData.newPlainText("sssss", "aaaa");
+            Toast.makeText(getApplicationContext(),v.getId()+"----", Toast.LENGTH_SHORT).show();
+            ClipData data = ClipData.newPlainText("setting", "1");
+            switch((int)v.getAlpha()) {
+                case 1:
+                    data = ClipData.newPlainText("setting", "a");
+                    break;
+                case 2:
+                    data = ClipData.newPlainText("setting", "b");
+                    break;
+                case 3:
+                    data = ClipData.newPlainText("setting", "c");
+                    break;
+                case 4:
+                    data = ClipData.newPlainText("setting", "d");
+                    break;
+                case 5:
+                    data = ClipData.newPlainText("setting", "e");
+                    break;
+            }
+
             View.DragShadowBuilder shadow = new View.DragShadowBuilder(icon);
             v.startDrag(data, shadow, null, 0);
             return false;
@@ -206,7 +224,12 @@ public class SampleMain extends ActionBarActivity {
                 case DragEvent.ACTION_DROP: {
                     ClipData dragData = event.getClipData();
                     final String tag = dragData.getItemAt(0).getText().toString();
-
+                    /*switch(tag) {
+                        case a:
+                            break;
+                        case b:
+                            break;
+                    }*/
                     if (v == findViewById(R.id.layout11))
                         Toast.makeText(getApplicationContext(), "targetLayout: " + v.getTag() +
                                 " dragged :" + tag, Toast.LENGTH_SHORT).show();
